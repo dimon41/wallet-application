@@ -1,0 +1,11 @@
+{
+  "name": "Dima's Engineer NFT #0",
+  "description": "A custom NFT representing an embedded software engineer escaping to Web3. Made in Stuttgart.",
+  "image": "ipfs://QmYourImageCID/0.png",  // Full IPFS link to image.
+  "external_url": "https://your-dapp-url.vercel.app",  // Link to your site.
+  "attributes": [  // Traits for rarity/filters on marketplaces.
+    {"trait_type": "Background", "value": "Stuttgart Skyline"},
+    {"trait_type": "Rarity", "value": "Common"},
+    {"trait_type": "Year", "value": 2026}
+  ]
+}

@@ -31,11 +31,11 @@ async function main() {
     const artifact = await hre.artifacts.readArtifact("MyNFT");
 
     // Create contract instance
-    const myNFT = getContract({
-        address: contractAddress as `0x${string}`,
-        abi: artifact.abi,
-        client: { public: publicClient, wallet: walletClient },
-    });
+    // const myNFT = getContract({
+    //     address: contractAddress as `0x${string}`,
+    //     abi: artifact.abi,
+    //     client: { public: publicClient, wallet: walletClient },
+    // });
 
     // Replace with your wallet address - MetaMask Account 2 Sepolia
     const tx = await walletClient.writeContract({

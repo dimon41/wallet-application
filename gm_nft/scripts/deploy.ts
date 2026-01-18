@@ -1,7 +1,7 @@
 import hre from "hardhat";
 import { createPublicClient, createWalletClient, http } from "viem";
 import { sepolia } from "viem/chains";
-import { privateKeyToAccount, mnemonicToAccount } from "viem/accounts";
+import { privateKeyToAccount} from "viem/accounts";
 
 async function main() {
   // Create clients directly with viem

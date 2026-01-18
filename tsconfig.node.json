@@ -27,5 +27,9 @@
   },
   /* "include": ["vite.config.ts"] */
   "include": ["gm_nft/hardhat.config.ts", "gm_nft/scripts/**/*.ts", "gm_nft/hardhat.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "gm_nft/scripts/**/*.ts", // Tell Vercel to IGNORE these scripts
+    "gm_nft/hardhat.config.ts" // Ignore the config too
+  ]
 }

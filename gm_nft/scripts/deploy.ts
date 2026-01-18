@@ -31,11 +31,13 @@ async function main() {
   const artifact = await hre.artifacts.readArtifact("MyNFT");
 
   // Deploy using viem
-  const hash = await walletClient.deployContract({
-    abi: artifact.abi,
-    bytecode: artifact.bytecode as `0x${string}`,
-    args: [account.address],
-  });
+ const hash = await walletClient.deployContract({
+  abi: artifact.abi,
+  bytecode: artifact.bytecode as `0x${string}`,
+  args: [account.address],
+  chain: sepolia,
+  kzg: undefined,
+} as any);
 
   console.log("MyNFT deploy transaction hash:", hash);
   

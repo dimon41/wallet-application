@@ -16,5 +16,5 @@ contract MyNFT is ERC721, Ownable {
 
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://bafybeihtabho2qk7he2552gy74gqssgt6hw422vimtx7g474zcas6ostae/";
-    }
+    }                  
 }

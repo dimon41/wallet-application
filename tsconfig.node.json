@@ -1,11 +1,14 @@
 {
+  "extends": "@tsconfig/node18/tsconfig.json",  // Or your Vite default (e.g., "@vitejs/plugin-react/tsconfig.node.json" if present).
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "target": "ES2023",
+    "target": "ES2020",
     "lib": ["ES2023"],
     "module": "ESNext",
-    "types": ["node"],
+    /* "types": ["node"], */
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -22,5 +25,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["vite.config.ts"]
+  /* "include": ["vite.config.ts"] */
+  "include": ["gm_nft/hardhat.config.ts", "gm_nft/scripts/**/*.ts", "gm_nft/hardhat.d.ts"],
+  "exclude": ["node_modules"]
 }

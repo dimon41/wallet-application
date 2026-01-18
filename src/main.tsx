@@ -10,7 +10,8 @@ import { mainnet, sepolia } from 'wagmi/chains'; // Add chains you want (e.g., E
 // Create Wagmi config
 const config = getDefaultConfig({
   appName: 'My Wallet DApp',
-  projectId: import.meta.env.VITE_PROJECT_ID, // Your Reown ID
+  //projectId: import.meta.env.VITE_PROJECT_ID, // Your Reown ID
+  projectId: "0c903133ce492ad65f36f879f3e8c3b2",
   chains: [mainnet, sepolia], // Networks to support
 });
 

@@ -1,27 +1,47 @@
 import hre from "hardhat";
+import { createPublicClient, createWalletClient, http } from "viem";
+import { sepolia } from "viem/chains";
+import { privateKeyToAccount, mnemonicToAccount } from "viem/accounts";
 
 async function main() {
-  // Get wallet and public clients from viem.
-  const [deployer] = await hre.viem.getWalletClients();
-  const publicClient = await hre.viem.getPublicClient();
-
-  // Log for confirmation.
-  console.log("Deploying MyNFT from:", deployer.account.address);
-
-  // Load artifact (ABI and bytecode)—Hardhat auto-compiles.
-  const artifact = await hre.artifacts.getArtifact("MyNFT");  // If 'hre' not recognized, see note below.
-
-  // Deploy the contract.
-  const myNFT = await publicClient.deployContract({
-    abi: artifact.abi,
-    bytecode: artifact.bytecode as `0x${string}`,
-    args: [deployer.account.address],  // Your address as initialOwner.
-    account: deployer.account,
+  // Create clients directly with viem
+  const rpcUrl = process.env.SEPOLIA_RPC_URL || "https://sepolia.infura.io/v3/9cfdb8835d3542caaacb6f2f20b229a4";
+  
+  const publicClient = createPublicClient({
+    chain: sepolia,
+    transport: http(rpcUrl),
   });
 
-  // Wait and log.
-  await myNFT.waitForDeployment();
-  console.log("MyNFT deployed to:", myNFT.address);
+  const privateKey = process.env.PRIVATE_KEY || "4d3f314e5f34f1f57eb91f6547b7dc8591d1a7673ee90e4477523e203f5b1d6f";
+  
+  // Create account from private key
+  const account = privateKeyToAccount(
+    privateKey.startsWith("0x") ? (privateKey as `0x${string}`) : (`0x${privateKey}` as `0x${string}`)
+  );
+
+  const walletClient = createWalletClient({
+    chain: sepolia,
+    transport: http(rpcUrl),
+    account,
+  });
+
+  console.log("Deploying MyNFT from:", account.address);
+
+  // Get the artifact
+  const artifact = await hre.artifacts.readArtifact("MyNFT");
+
+  // Deploy using viem
+  const hash = await walletClient.deployContract({
+    abi: artifact.abi,
+    bytecode: artifact.bytecode as `0x${string}`,
+    args: [account.address],
+  });
+
+  console.log("MyNFT deploy transaction hash:", hash);
+  
+  // Wait for confirmation
+  const receipt = await publicClient.waitForTransactionReceipt({ hash });
+  console.log("MyNFT deployed to:", receipt.contractAddress);
 }
 
 main().catch((error) => {

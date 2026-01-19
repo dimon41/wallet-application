@@ -1,15 +1,15 @@
 import hre from "hardhat";
 import { createWalletClient, http } from "viem";
-import { sepolia } from "viem/chains";
+import { polygon } from "viem/chains"; 
 import { privateKeyToAccount } from "viem/accounts";
 
 async function main() {
-    const contractAddress = "0x1874da065754cda21e17dd59a0c1b04ec3242144";  // Replace with actual address
+    const contractAddress = "0x5f12a8c51615d7c862e0f403721e62d086269a80";  // Replace with actual address
     
     // Create clients directly with viem
-    const rpcUrl = process.env.SEPOLIA_RPC_URL || "https://sepolia.infura.io/v3/9cfdb8835d3542caaacb6f2f20b229a4";
+    const rpcUrl = process.env.POLYGON_RPC_URL || "https://polygon-mainnet.g.alchemy.com/v2/_D0YF2NfuWojfgwP3MEF5";
     
-    const privateKey = process.env.PRIVATE_KEY || "4d3f314e5f34f1f57eb91f6547b7dc8591d1a7673ee90e4477523e203f5b1d6f";
+    const privateKey = process.env.PRIVATE_KEY || "";
     
     // Create account from private key
     const account = privateKeyToAccount(
@@ -17,7 +17,7 @@ async function main() {
     );
 
     const walletClient = createWalletClient({
-        chain: sepolia,
+        chain: polygon,
         transport: http(rpcUrl),
         account,
     });
@@ -37,9 +37,9 @@ async function main() {
         address: contractAddress as `0x${string}`,
         abi: artifact.abi,
         functionName: "mint",
-        args: ["0xD4cB0D54E5aD04A0ea73c6EEFB53D14Dfa2d6541"],
+        args: ["0xa163cf5ae716E5B663c1Cb204D0E6eD1238C45b7"],
         account,
-        chain: sepolia,
+        chain: polygon,
         type: 'eip1559',
         kzg: undefined,
     } as any);

@@ -1,18 +1,18 @@
 import hre from "hardhat";
 import { createPublicClient, createWalletClient, http } from "viem";
 //import { sepolia } from "viem/chains";
-import { polygonAmoy } from "viem/chains"; 
+import { polygon } from "viem/chains"; 
 import { privateKeyToAccount} from "viem/accounts";
 
 async function main() {
   // Create clients directly with viem
   //const rpcUrl = process.env.SEPOLIA_RPC_URL || "https://sepolia.infura.io/v3/9cfdb8835d3542caaacb6f2f20b229a4";
-  const rpcUrl = process.env.AMOY_RPC_URL || "https://polygon-amoy.g.alchemy.com/v2/_D0YF2NfuWojfgwP3MEF5";
+  const rpcUrl = process.env.POLYGON_RPC_URL || "https://polygon-mainnet.g.alchemy.com/v2/_D0YF2NfuWojfgwP3MEF5";
 
   
   const publicClient = createPublicClient({
     //chain: sepolia,
-    chain: polygonAmoy,
+    chain: polygon,
     transport: http(rpcUrl),
   });
 
@@ -25,7 +25,7 @@ async function main() {
   );
 
   const walletClient = createWalletClient({
-    chain: polygonAmoy,
+    chain: polygon,
     transport: http(rpcUrl),
     account,
   });
@@ -40,7 +40,7 @@ async function main() {
   abi: artifact.abi,
   bytecode: artifact.bytecode as `0x${string}`,
   args: [account.address],
-  chain: polygonAmoy,
+  chain: polygon,
   kzg: undefined,
 } as any);
 

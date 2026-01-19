@@ -1,26 +1,31 @@
 import hre from "hardhat";
 import { createPublicClient, createWalletClient, http } from "viem";
-import { sepolia } from "viem/chains";
+//import { sepolia } from "viem/chains";
+import { polygonAmoy } from "viem/chains"; 
 import { privateKeyToAccount} from "viem/accounts";
 
 async function main() {
   // Create clients directly with viem
-  const rpcUrl = process.env.SEPOLIA_RPC_URL || "https://sepolia.infura.io/v3/9cfdb8835d3542caaacb6f2f20b229a4";
+  //const rpcUrl = process.env.SEPOLIA_RPC_URL || "https://sepolia.infura.io/v3/9cfdb8835d3542caaacb6f2f20b229a4";
+  const rpcUrl = process.env.AMOY_RPC_URL || "https://polygon-amoy.g.alchemy.com/v2/_D0YF2NfuWojfgwP3MEF5";
+
   
   const publicClient = createPublicClient({
-    chain: sepolia,
+    //chain: sepolia,
+    chain: polygonAmoy,
     transport: http(rpcUrl),
   });
 
-  const privateKey = process.env.PRIVATE_KEY || "4d3f314e5f34f1f57eb91f6547b7dc8591d1a7673ee90e4477523e203f5b1d6f";
+  const privateKey = process.env.PRIVATE_KEY || "";
   
+
   // Create account from private key
   const account = privateKeyToAccount(
     privateKey.startsWith("0x") ? (privateKey as `0x${string}`) : (`0x${privateKey}` as `0x${string}`)
   );
 
   const walletClient = createWalletClient({
-    chain: sepolia,
+    chain: polygonAmoy,
     transport: http(rpcUrl),
     account,
   });
@@ -35,7 +40,7 @@ async function main() {
   abi: artifact.abi,
   bytecode: artifact.bytecode as `0x${string}`,
   args: [account.address],
-  chain: sepolia,
+  chain: polygonAmoy,
   kzg: undefined,
 } as any);
 

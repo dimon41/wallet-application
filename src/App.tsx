@@ -26,7 +26,7 @@ function App() {
   
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>My NFT DApp</h1>
+      <h1>My NFT DApp 2</h1>
       <ConnectButton />
       {isConnected && <button onClick={handleMint} style={{ marginTop: '20px' }}>Mint NFT</button>}
       {/* Optional NFT display */}

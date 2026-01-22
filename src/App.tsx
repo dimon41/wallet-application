@@ -6,7 +6,7 @@ function App() {
   const { address, isConnected } = useAccount();
   const { writeContract } = useWriteContract();
   
-  const nftAddress = '0x5f12a8c51615d7c862e0f403721e62d086269a80';  // From deploy logs (Polygon mainnet).
+  const nftAddress = '0x3A17DD2d21fa53276f5023C59E53B01feD5e2920';  // From deploy logs (Polygon mainnet).
   const nftAbi = parseAbi(['function mint(address to) public']);  // Your mint ABI.
   
   
@@ -31,7 +31,7 @@ function App() {
       {isConnected && <button onClick={handleMint} style={{ marginTop: '20px' }}>Mint NFT</button>}
       {/* Optional NFT display */}
       <h2>Your NFT</h2>
-      <img src="https://ipfs.io/ipfs/your-metadata-cid/image.png" alt="NFT" width="300" />
+      <img src="https://ipfs.io/ipfs/bafybeid3oli4jtyqvp4s3toerhekjp4fby5nhifqlhfpvhrr6cjv4d3ynm" alt="NFT" width="300" />
     </div>
   );
 }

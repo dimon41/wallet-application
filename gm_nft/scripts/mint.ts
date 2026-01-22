@@ -4,7 +4,7 @@ import { polygon } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
 
 async function main() {
-    const contractAddress = "0x5f12a8c51615d7c862e0f403721e62d086269a80";  // Replace with actual address
+    const contractAddress = "0x3a17dd2d21fa53276f5023c59e53b01fed5e2920";  // Replace with actual address
     
     // Create clients directly with viem
     const rpcUrl = process.env.POLYGON_RPC_URL || "https://polygon-mainnet.g.alchemy.com/v2/_D0YF2NfuWojfgwP3MEF5";

@@ -1,0 +1,20 @@
+Wallet-Application (root - Vite/React frontend)
+├── src/
+│   ├── App.tsx                  ← Main app with wallet connect
+│   ├── main.tsx                 ← Entry point + Wagmi/RainbowKit setup
+│   └── App.css
+├── public/
+├── package.json                 ← Frontend dependencies (wagmi, rainbowkit, viem, react)
+├── vite.config.ts
+├── tsconfig.json (composite)
+├── tsconfig.app.json
+├── tsconfig.node.json
+└── gm_nft/                      ← Hardhat backend project (separate)
+    ├── contracts/
+    │   └── MyNFT.sol            ← Your ERC-721 NFT contract
+    ├── scripts/
+    │   ├── deploy.ts            ← Deploy script
+    │   └── mint.ts              ← Mint script
+    ├── hardhat.config.ts
+    ├── hardhat.d.ts
+    └── package.json             ← Hardhat dependencies
